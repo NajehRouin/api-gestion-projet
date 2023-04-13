@@ -29,6 +29,9 @@ const TacheSchema=new mongoose.Schema({
     etat_tache:{
         type:String,
         default:'en_attente'
+    },
+    titre_projet:{
+        type:String
     }
 
 })

@@ -28,6 +28,18 @@ const materielCtrl={
             }
         
     },
+
+getMateriel_ById:async(req,res)=>{
+    try {
+        const id=req.params.id
+        const matereil=await materiels.findById({_id:id}).populate('categorie','type_cat').exec()
+        if(!matereil) return res.status(400).json({msg:'Materiel does not exist'})
+        res.json({result:matereil})
+    } catch (error) {
+        return res.status(500).json({msg:error.message})
+    }
+},
+
     deleteMateriel:async(req,res)=>{
         try {
             await materiels.findByIdAndDelete(req.params.id)
@@ -36,6 +48,18 @@ const materielCtrl={
             
         } catch (err) {
                 return res.status(500).json({msg:err.message})            
+        }
+    },
+    modifiermateriel:async(req,res)=>{
+        try {
+            const {code_materiel, libelle,images,categorie}=req.body
+            
+            if(!images) return res.status(400).json({msg:'No image upload'})
+            const materiel_update=await materiels.findByIdAndUpdate({_id:req.params.id},{code_materiel, libelle,images,categorie})
+       
+            res.json({result:materiel_update})
+        } catch (error) {
+            return res.status(500).json({msg:err.message})     
         }
     }
 

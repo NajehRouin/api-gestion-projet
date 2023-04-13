@@ -14,6 +14,7 @@ const equipeRouter=require('./routes/equipeRouter')
 const tacheRouter=require('./routes/tacheRouter')
 const ProjetRouter=require('./routes/projetRouter')
 const CategorieRouter=require('./routes/categorieRoute')
+const ReservationRouter=require('./routes/ReservationRoute')
 const app=express();
 
 app.use(express.json())
@@ -31,6 +32,7 @@ app.use('/equipe',equipeRouter)
 app.use('/tache',tacheRouter)
 app.use('/projet',ProjetRouter)
 app.use('/categorie',CategorieRouter)
+app.use('/reservation',ReservationRouter)
 app.get('/',(req,res)=>{
     res.json({msg:'welcom to my app'})
 })

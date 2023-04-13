@@ -4,11 +4,11 @@ const tachCtrl={
 creeTache:async(req,res)=>{
 
         try {
-            const {titre,description,data_debut,data_fin,priorite,etat_tache}=req.body
+            const {titre,description,data_debut,data_fin,priorite,etat_tache,titre_projet}=req.body
 
             const tache=await taches.findOne({titre})
             if (tache) return res.status(400).json({msg:'tache already exists'})
-            const newTache=new taches({titre,description,data_debut,data_fin,priorite,etat_tache})
+            const newTache=new taches({titre,description,data_debut,data_fin,priorite,etat_tache,titre_projet})
             await newTache.save()
             res.json({msg:'Created a tache', result:newTache})
         } catch (error) {
@@ -38,10 +38,10 @@ getTacheById:async(req,res)=>{
 },
 updateTache:async(req,res)=>{
     try {
-        const {titre,description,data_debut,data_fin,priorite,etat_tache}=req.body
+        const {titre,description,data_debut,data_fin,priorite,etat_tache,titre_projet}=req.body
 
         const TacheUpdate= await taches.findOneAndUpdate({_id:req.params.id},
-            {titre,description,data_debut,data_fin,priorite,etat_tache})
+            {titre,description,data_debut,data_fin,priorite,etat_tache,titre_projet})
             res.json({msg:'update a Tache',result:TacheUpdate})
 
     } catch (error) {

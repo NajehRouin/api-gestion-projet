@@ -1,5 +1,5 @@
 const projets=require('../models/projetModel')
-
+const mongoose=require('mongoose')
 const projetsCtrl={
         creeProjet:async(req,res)=>{
             try {
@@ -20,7 +20,16 @@ const projetsCtrl={
         },
     getProjets:async(req,res)=>{
         try {
-            const projet=await projets.find().populate("equipe",'nom_equipe').exec();
+            const projet=await projets.find().populate("equipe",'nom_equipe').populate("tache").exec();
+            res.json(projet)
+            
+        } catch (error) {
+            return res.status(500).json({msg:error.message})
+        }
+    },
+    getAllProjet:async(req,res)=>{
+        try {
+            const projet=await projets.find().populate("equipe",'nom_equipe').populate("tache","titre");
             res.json(projet)
             
         } catch (error) {
@@ -69,6 +78,22 @@ const projetsCtrl={
                 return res.status(500).json({msg:err.message})
             }
         },
+
+
+        filtreprojet:async(req,res)=>{
+            try {
+              
+               const {equipes}=req.body
+          
+                        
+                const projet=await projets.find({equipes})
+             
+                res.json( projet)
+               
+            } catch (error) {
+                return res.status(500).json({msg:error.message}) 
+            }
+        }
 
 }
 module.exports=projetsCtrl
