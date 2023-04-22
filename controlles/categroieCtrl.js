@@ -9,7 +9,7 @@ const categroieCtrl={
             if (categorie) return res.status(400).json({msg:'categorie existe'})
             const newCategorie= new Categorie({type_cat})
             await newCategorie.save()
-            res.json(newCategorie)
+            res.json({msg:'categorie created',result:newCategorie})
         } catch (error) {
             return res.status(500).json({msg:error.message})
             

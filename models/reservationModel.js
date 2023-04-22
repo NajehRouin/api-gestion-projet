@@ -18,6 +18,10 @@ const ReservationSchema=new mongoose.Schema({
         },
         date_reservation:{
             type:String
+        },
+        confirmer:{
+            type:String,
+            default:'en_attente'
         }
 })
 

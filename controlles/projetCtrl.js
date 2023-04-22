@@ -70,7 +70,7 @@ const projetsCtrl={
         getProjetById:async(req,res)=>{
             try {
                 const id=req.params.id
-                const projet=await projets.findById(id).populate("equipe",'nom_equipe').exec()
+                const projet=await projets.findById(id).populate("equipe",'nom_equipe').populate("tache").exec();
                 if (!projet) return res.status(400).json({msg:'projet does not exist'})
                
                 res.json( projet)

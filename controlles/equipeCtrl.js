@@ -36,6 +36,16 @@ const equipeCtrl={
         }
     },
 
+    findequipe:async(req,res)=>{
+        try {
+            const {membre}=req.body
+            const equipe=await equipes.findOne(req.body).populate('membre','-password').exec();
+            return res.json({ result:equipe})
+        } catch (error) {
+            return res.status(500).json({msg:error.message}) 
+        }
+    },
+
     getEquipeById:async(req,res)=>{
         try {
         
