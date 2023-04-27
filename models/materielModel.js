@@ -10,7 +10,7 @@ const materielSchema=mongoose.Schema({
         required:true
 
     },
-    libelle:{
+    designation:{
         type:String,
         required:true,
     },
@@ -20,11 +20,13 @@ const materielSchema=mongoose.Schema({
             ref: "categories",
       
     },
-    images:{
-        type:Object,
-        required:true
+    uls:{
+        type:String
+    },
+    type:{
+        type:String
+    },
 
-    }
 
 },{
     timestamps:true
