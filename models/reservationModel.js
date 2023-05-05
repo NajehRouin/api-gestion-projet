@@ -13,8 +13,14 @@ const ReservationSchema=new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "materiels",
         },
-        description:{
-            type:String
+      
+        unite:{
+            type:Number,
+            default:0
+        },
+        metre:{
+            type:Number,
+            default:0
         },
         date_reservation:{
             type:String

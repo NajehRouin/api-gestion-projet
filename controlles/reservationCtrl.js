@@ -4,8 +4,8 @@ const Reservations=require('../models/reservationModel')
 const ReservationCtrl={
         reserve:async(req,res)=>{
             try {
-                const {chef,projet,materiel,description,date_reservation}=req.body
-                const newReservation=new Reservations({chef,projet,materiel,description,date_reservation})
+                const {chef,projet,materiel,unite,metre,date_reservation}=req.body
+                const newReservation=new Reservations({chef,projet,materiel,unite,metre,date_reservation})
                 await newReservation.save()
                 res.json({result:newReservation})
             } catch (error) {
